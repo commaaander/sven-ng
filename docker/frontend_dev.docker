@@ -1,0 +1,17 @@
+FROM alpine
+
+RUN apk add npm
+
+RUN npm install -g vue
+RUN npm install -g @vue/cli
+
+WORKDIR /app
+
+RUN vue create --default --skipGetStarted vue_container_project
+WORKDIR /app/vue_container_project
+
+RUN vue add vuetify
+
+EXPOSE 8080
+
+CMD [ "npm", "run", "serve"]
